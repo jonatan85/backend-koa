@@ -9,16 +9,20 @@ import cors from '@koa/cors';
 import routes from './routes/index.js';
 import config from './config/env.js';
 import connectDB from './config/database.js';
+import passport from './config/passport.js';
 
 const app = new Koa();
-const router = new Router();
 
+// Conectar a MongoDB
 connectDB();
 
 // Middlewares
-app.use(bodyParser()); // Permite recibir datos en JSON
-app.use(helmet()); // Agrega seguridad
-app.use(cors()); // Permite peticiones desde otros dominios
+app.use(bodyParser());
+app.use(helmet());
+app.use(cors());
+
+// Inicializar Passport
+app.use(passport.initialize());
 
 // Rutas
 app.use(routes.routes()).use(routes.allowedMethods());
