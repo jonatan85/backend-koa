@@ -50,7 +50,7 @@ const userDosSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
+    enum: ['user', 'moderador', 'admin', 'superadmin'],
     default: 'user'
   },
 }, {

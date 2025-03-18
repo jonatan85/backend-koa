@@ -1,6 +1,5 @@
 import Router from '@koa/router';
 import bcrypt from 'bcryptjs';
-import passport from 'koa-passport';
 
 import getJWT from '../utils/jsonwebtoken.js';
 import UserDos from '../models/UserDos.js';
@@ -48,7 +47,7 @@ router.post('/register', async (ctx) => {
       postalCode,
       city,
       phoneNumber,
-      role
+      role: role || 'user'
     });
 
     const createdUser = await newUser.save();
@@ -185,7 +184,5 @@ router.delete('/:id', async (ctx) => {
     ctx.body = { error: 'Error al eliminar usuario', details: err.message };
   }
 });
-
-
 
 export default router;
