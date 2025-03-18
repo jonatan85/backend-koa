@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const userDosSchema = new mongoose.Schema({
   email: { 
@@ -46,11 +47,27 @@ const userDosSchema = new mongoose.Schema({
   avatar: { 
     type: String,  // URL de la imagen de perfil en Cloudinary
     default: null
-  }
+  },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
 }, {
   timestamps: true
 });
 
-const UserDos = mongoose.model('UserDos', userDosSchema);
+// 🔒 Encriptar contraseña antes de guardar
+userDosSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
 
+// 🔑 Método para comparar contraseñas
+userDosSchema.methods.comparePassword = function (candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
+};
+
+const UserDos = mongoose.model('UserDos', userDosSchema);
 export default UserDos;
