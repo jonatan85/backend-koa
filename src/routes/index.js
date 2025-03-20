@@ -5,6 +5,7 @@ import uploadRoutes from './upload.routes.js';
 import userDosRoutes from './userDos.routes.js';
 import adminRoutes from './admin.routes.js';
 import pizzasRouter from './pizzas.routes.js';
+import ingredientsRouter from './ingredients.routes.js';
 
 const router = new Router();
 
@@ -14,5 +15,6 @@ router.use(uploadRoutes.routes());
 router.use(userDosRoutes.routes());
 router.use(adminRoutes.routes());
 router.use(pizzasRouter.routes());
+router.use(ingredientsRouter.routes());
 
 export default router;
