@@ -57,17 +57,5 @@ const userDosSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// 🔒 Encriptar contraseña antes de guardar
-userDosSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
-
-// 🔑 Método para comparar contraseñas
-userDosSchema.methods.comparePassword = function (candidatePassword) {
-  return bcrypt.compare(candidatePassword, this.password);
-};
-
 const UserDos = mongoose.model('UserDos', userDosSchema);
 export default UserDos;
