@@ -1,113 +1,90 @@
-# backend-koa
-# NodePizzeriaBackend
+🍕 Restaurante Italiano Favio
+Bienvenido al frontend del proyecto de Restaurante Italiano Favio, donde los usuarios pueden personalizar y ordenar pizzas. Este frontend está desarrollado con React, TypeScript y TailwindCSS, interactuando con una API RESTful para gestionar usuarios, pedidos y más.
 
-Backend RESTful API para una pizzería, desarrollado con **Koa.js** y **MongoDB**. Implementa autenticación JWT, manejo de archivos con Cloudinary, y permite la gestión de usuarios, pedidos, ingredientes y pizzas.
+🌟 Características Principales
+Autenticación de usuarios: Registro, inicio de sesión y cierre de sesión.
 
-## Características Principales
+Personalización de pizzas: Los usuarios pueden elegir ingredientes, tamaño, masa y salsa para crear una pizza única.
 
-- CRUD de usuarios, pizzas, ingredientes y pedidos.
-- Autenticación mediante JWT con Passport.
-- Manejo de imágenes con Cloudinary.
-- Middleware para protección de rutas y roles de usuario.
-- Seeds para inicializar la base de datos.
+Carrito de compras: Los usuarios pueden agregar pizzas al carrito y gestionar la cantidad.
 
-## Requisitos Previos
+Realización de pedidos: Los usuarios pueden realizar pedidos, enviando la información al backend para su procesamiento.
 
-- **Node.js** (v14 o superior)
-- **MongoDB Atlas** o una instancia local de MongoDB
+🛠 Tecnologías Usadas
+React: Librería para construir interfaces de usuario interactivas.
 
-## Instalación
+TypeScript: Lenguaje que extiende JavaScript con tipado estático.
 
-1. Clona el repositorio:
-   ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd backend-koa
-   ```
+Vite: Herramienta de construcción rápida para proyectos modernos de JavaScript/TypeScript.
 
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
+TailwindCSS: Framework de CSS para crear diseños responsivos y personalizados.
 
-3. Configura las variables de entorno en un archivo **.env** con el siguiente formato:
-   ```env
-   PORT=3000
-   DATABASE_URL=mongodb+srv://<usuario>:<password>@cluster.mongodb.net/pizzeria
-   JWT_SECRET_KEY=your_secret_key
-   CLOUDINARY_CLOUD_NAME=your_cloud_name
-   CLOUDINARY_API_KEY=your_api_key
-   CLOUDINARY_API_SECRET=your_api_secret
-   ```
+Axios: Cliente HTTP para realizar peticiones a la API del backend.
 
-4. Inicia el servidor en modo de desarrollo:
-   ```bash
-   npm run dev
-   ```
+React Router: Para la navegación entre las diferentes vistas de la aplicación.
 
-El servidor estará disponible en `http://localhost:3000`.
+JWT: Para la autenticación y la gestión de sesiones de los usuarios.
 
-## Uso
+🚀 Instalación
+1. Clonar el repositorio
+Primero, clona el repositorio en tu máquina local:
 
-### Endpoints Disponibles
+bash
+Copiar código
+git clone <URL_DEL_REPOSITORIO>
+cd restaurante-italiano-favio-s
+2. Instalar las dependencias
+Instala las dependencias necesarias para el proyecto:
 
-#### 🔑 Autenticación
-- `POST /users-dos/register` → Registro de usuarios.
-- `POST /users-dos/login-jwt` → Inicio de sesión con JWT.
-- `POST /users-dos/logout-jwt` → Cerrar sesión con token blacklist.
+bash
+Copiar código
+npm install
+3. Ejecutar el proyecto en modo desarrollo
+Inicia el servidor de desarrollo con el siguiente comando:
 
-#### 🍕 Gestión de Pizzas
-- `GET /pizzas` → Obtener todas las pizzas.
-- `POST /pizzas` → Crear una nueva pizza.
-- `PUT /pizzas/:id` → Editar una pizza.
-- `DELETE /pizzas/:id` → Eliminar una pizza.
+bash
+Copiar código
+npm run dev
+La aplicación estará disponible en http://localhost:3000.
 
-#### 🛒 Pedidos
-- `POST /orders` → Crear un pedido.
-- `GET /orders` → Obtener todos los pedidos.
-- `GET /orders/:id` → Obtener un pedido por ID.
+📝 Scripts Disponibles
+Aquí tienes los scripts más útiles para el proyecto:
 
-## Estructura del Proyecto
+npm run dev: Inicia el servidor de desarrollo.
 
-```bash
-backend-koa/
+npm run build: Compila el proyecto para producción.
+
+npm run preview: Muestra una vista previa de la aplicación construida.
+
+npm run lint: Ejecuta el linter para asegurarse de que el código esté limpio.
+
+📂 Estructura del Proyecto
+Este es un vistazo a la estructura de carpetas de la aplicación:
+
+bash
+Copiar código
+src/
 │
-├── config/          # Configuración del entorno y base de datos
-├── controllers/     # Controladores de cada entidad
-├── middlewares/     # Middlewares de autenticación y validación
-├── models/          # Modelos de MongoDB con Mongoose
-├── routes/          # Definición de rutas Koa
-├── utils/           # Utilidades como manejo de JWT y subida de imágenes
-├── index.js         # Punto de entrada del servidor
-├── .env             # Variables de entorno (no subir a GitHub)
-├── package.json     # Dependencias del proyecto
-├── README.md        # Documentación del proyecto
-```
+├── components/          # Componentes reutilizables (Header, Pizzas, etc.)
+├── context/             # Contexto para gestionar el estado global (autenticación)
+├── pages/               # Páginas principales (Home, CrearPizza, BackOffice, etc.)
+├── reducers/            # Reducers para gestionar el estado de la app
+├── service/             # Servicios para interactuar con la API (login, pedidos, etc.)
+├── types/               # Tipos de TypeScript para las entidades principales (Pizza, User)
+└── utils/               # Funciones de utilidad (calcular precios, etc.)
+🤝 Contribuciones
+¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
-## Scripts Disponibles
+Haz un fork del repositorio.
 
-- `npm start` → Inicia el servidor en modo producción.
-- `npm run dev` → Inicia el servidor en modo desarrollo con nodemon.
+Crea una nueva rama para tu funcionalidad (git checkout -b feature/nueva-funcionalidad).
 
-## Tecnologías Usadas
+Realiza los cambios y haz commit (git commit -m 'Añadir nueva funcionalidad').
 
-- **Node.js**
-- **Koa.js**
-- **MongoDB + Mongoose**
-- **JSON Web Tokens (JWT)**
-- **Cloudinary** (para almacenamiento de imágenes)
-- **Bcrypt.js** (para hash de contraseñas)
+Haz push a tu rama (git push origin feature/nueva-funcionalidad).
 
-## Contribuciones
+Abre un Pull Request detallando los cambios realizados.
 
-¡Las contribuciones son bienvenidas! Para contribuir:
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza los cambios y haz commit (`git commit -m 'Añadir nueva funcionalidad'`).
-4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
-5. Abre un Pull Request.
-
-## Licencia
-
-Este proyecto es solo para consulta y todos los derechos están reservados. No se permite su uso, modificación ni distribución sin el consentimiento del autor.
+📝 Licencia
+Este proyecto está bajo la Licencia MIT. Puedes ver los detalles de la licencia en el archivo LICENSE.
 
